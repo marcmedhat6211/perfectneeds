@@ -1,5 +1,7 @@
+// CSS
 import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
+// END CSS
 import type { AppProps } from "next/app";
 import Layout from "../components/layout/Layout";
 
