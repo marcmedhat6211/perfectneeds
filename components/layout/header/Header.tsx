@@ -1,8 +1,22 @@
-import Link from "next/link";
 import React from "react";
+import HeaderItem from "./HeaderItem";
+import { useRouter } from "next/router";
 import classes from "../../../styles/layout/header/index.module.scss";
 
-const Header: React.FC = (props) => {
+const headerItemsData = [
+  { id: 1, itemText: "Home", itemLink: "/" },
+  { id: 2, itemText: "Portfolio", itemLink: "/portfolio" },
+  { id: 3, itemText: "Services", itemLink: "/services" },
+  { id: 4, itemText: "About Us", itemLink: "/about-us" },
+  { id: 5, itemText: "Blogs", itemLink: "/blogs" },
+  { id: 6, itemText: "Hiring", itemLink: "/hiring" },
+  { id: 7, itemText: "Contact Us", itemLink: "/contact-us" },
+  { id: 8, itemText: "Get A Quote", itemLink: "/get-quote" },
+];
+
+const Header = () => {
+  const router = useRouter();
+
   return (
     <div id={classes["header-wrapper"]}>
       <div className="container">
@@ -23,22 +37,14 @@ const Header: React.FC = (props) => {
             </div>
             <div className="navbar-collapse collapse" id="navbarCollapse">
               <ul className="navbar-nav ml-auto menu">
-                <li className="nav-item">
-                  <Link className="test" href="/">
-                    <a
-                      className={`nav-link ${classes["nav-link"]} ${classes.active}`}
-                    >
-                      Home
-                    </a>
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="test" href="/portfolio">
-                    <a className={`nav-link ${classes["nav-link"]}`}>
-                      Portfolio
-                    </a>
-                  </Link>
-                </li>
+                {headerItemsData.map((item) => (
+                  <HeaderItem
+                    key={item.id}
+                    itemText={item.itemText}
+                    itemLink={item.itemLink}
+                    isActive={router.route === item.itemLink}
+                  />
+                ))}
               </ul>
             </div>
           </nav>
